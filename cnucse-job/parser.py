@@ -1,6 +1,7 @@
 import requests
 import re
 from bs4 import BeautifulSoup
+import datetime
 url = "http://computer.cnu.ac.kr/index.php?mid=job"
 
 request = requests.get(url)
@@ -28,7 +29,7 @@ time_data = []
 #		if i is not "":
 #			time_data.append(i)
 
-
+# time/title 태그 파싱
 parse_data = []
 for t in table.find_all("td",["title","time"]):
 	text_data = t.get_text().replace("\t","")
@@ -51,3 +52,11 @@ for i in range(0,len(parse_data)):
 	if len(dic_data) == 2:
 		result.append(dic_data)
 		dic_data = {}
+
+# 현재 날짜, 게시글 날짜 비교
+today = datetime.datetime.now().strftime("%Y.%m.%d")
+time = result[0]["time"]
+date1 = datetime.datetime.strptime(today,"%Y.%m.%d")
+date2 = datetime.datetime.strptime(time,"%Y.%m.%d")
+
+print((date1-date2).days)
