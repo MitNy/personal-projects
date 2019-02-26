@@ -5,7 +5,6 @@ import datetime
 from firebase import firebase
 import threading
 
-thread = None
 firebase = firebase.FirebaseApplication('https://cnu-cse-job.firebaseio.com/', None)
 
 def get_job_post():
@@ -46,25 +45,25 @@ def get_job_post():
 	result = []
 	dic_data = {}
 	for i in range(0,len(parse_data)):
-		regex = re.compile(r"([12]\d{3}.(0[1-9]|1[0-2]).(0[1-9]|[12]\d|3[01]))")
+		regex = re.compile(r"([12]\d{3}.(0[1-9]|1[0-2]).(0[1-9]|[12]\d|3[01]))") # YYYY.mm.dd 포맷 정규식
 		m = regex.match(parse_data[i])
-		if m:
+		if m: # 날짜 포맷과 일치할 경우 time(key)에 value 저장
 			dic_data["time"] = m.group()
-		else:
+		else: # 일치하지 않을 경우title(key)에 value 저장
 			dic_data["title"] = parse_data[i]
 
-		if len(dic_data) == 2:
+		if len(dic_data) == 2: # time/title 딕셔너리가 완성되면 result에 저장 후 딕셔너리 초기화
 			result.append(dic_data)
 			dic_data = {}
 
-	for i in range(0,len(result)):
+	for i in range(0,len(result)): # Firebase database에 저장
 		try:
-			firebase.patch("/"+str(i),result[i])
+			firebase.patch("/"+str(i),result[i]) 
 		except:
 			print("[-] Update Error\n")
 	print("[+] Update completed\n")
 
-	threading.Timer(600,get_job_post).start()
+	threading.Timer(600,get_job_post).start() # 10분마다 반복
 
 # 현재 날짜, 게시글 날짜 비교
 #today = datetime.datetime.now().strftime("%Y.%m.%d")
