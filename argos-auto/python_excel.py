@@ -6,6 +6,8 @@ import os
 import sys
 
 result = []
+
+# 엑셀 데이터를 tuple 형식으로 저장 학번이 201600000 일 경우 16만 저장하도록 파싱 
 def excel_to_list(filename):
 	wb = openpyxl.load_workbook(filename)
 	ws = wb.active
@@ -21,6 +23,7 @@ def excel_to_list(filename):
 			result.append(tuple(tmp_data))
 			tmp_data = []
 
+# mysql 테이블에 튜플 데이터 삽입
 def mysql_insert(db,table,data):
 	try:
 		cursor = db.cursor()
@@ -31,6 +34,7 @@ def mysql_insert(db,table,data):
 	except:
 		print("[ERROR] Insertion failed\n")
 
+# mysql 테이블의 기존 데이터를 삭제
 def table_clear(db,table):
 	try:
 		cursor = db.cursor()
@@ -38,6 +42,8 @@ def table_clear(db,table):
 	except:
 		print("[ERROR] Truncate failed\n")
 
+# 파일이 존재하는지 체크
+# return : True or False
 def fileCheck(filename):
 	return os.path.isfile("./"+filename)
 
