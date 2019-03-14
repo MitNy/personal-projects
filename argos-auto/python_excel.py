@@ -51,8 +51,8 @@ def main():
 	db = mysql.connector.connect(
 		host="localhost",
 		user="root",
-		passwd="skaksdkfdk",
-		database="mitny"
+		passwd="",
+		database=""
 	)
 	print("* * * * * * 세미나 랜덤지목 데이터 삽입 자동화 프로그램* * * * * *")
 	print("[*] exit 입력 시 종료됩니다.")
