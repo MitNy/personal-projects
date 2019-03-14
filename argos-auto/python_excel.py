@@ -27,6 +27,7 @@ def mysql_insert(db,table,data):
 		sql = "INSERT INTO "+table+" (stuNum,name) VALUES (%s, %s)"
 		cursor.executemany(sql,data)
 		db.commit()
+		print("[+] Insertion success\n")
 	except:
 		print("[ERROR] Insertion failed\n")
 
@@ -60,6 +61,7 @@ def main():
 			if answer == "Y":
 				table_clear(db,table)
 				mysql_insert(db,table,result)
+				break
 			else:
 				continue
 		elif filename == "exit":
@@ -69,6 +71,8 @@ def main():
 			print("[ERROR] 파일이 존재하지 않습니다.")
 			continue
 		print("\n")
+
+	sys.exit(1)
 
 if __name__ == "__main__":
     main()
