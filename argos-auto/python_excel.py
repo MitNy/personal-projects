@@ -62,6 +62,9 @@ def main():
 		filename = input("1. 엑셀 파일명 입력 : ")
 		if fileCheck(filename) is True:
 			table = input("3. 데이터베이스 테이블명 입력 : ")
+			if "member" not in table:
+				print("[-] 멤버 관련 외 테이블은 수정할 수 없습니다.")
+				exit(1)
 			excel_to_list(filename)
 			answer = input("[*] 테이블 내 기존 데이터가 삭제됩니다. 진행하시겠습니까? (Y,n) : ")
 			if answer == "Y":
