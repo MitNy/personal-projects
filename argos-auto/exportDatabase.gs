@@ -12,7 +12,6 @@ function exportDatabase() {
   var stmt = conn.createStatement();
   stmt.setMaxRows(1000);
   var results = stmt.executeQuery("SELECT stuID,name,seminarTheme,seminarDate FROM seminar_list ORDER BY seminarDate DESC");
-  var numCols = results.getMetaData().getColumnCount();
   var i=2;
   while(results.next()) {
       sID = sheet.getRange(i, 1);
@@ -28,6 +27,6 @@ function exportDatabase() {
   
   results.close();
   stmt.close();
-  
+  conn.close(); 
 }
 
