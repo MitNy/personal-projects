@@ -22,6 +22,20 @@ html, body {
     width: 100px;
 }
 
+.box input[type=radio] {
+    display: none;
+}
+
+.box input[type=radio]:checked + .radio {
+    background-color: #FBEFEF;
+}
+
+.box label {
+    padding-top:40px;
+    padding-bottom: 20px;
+    max-height: 45px;
+}
+
 .box .vs-1 {
     width:49.5%;
     height: 100px;
@@ -35,18 +49,19 @@ html, body {
     cursor:pointer;
 }
 
-.vs-1:hover {
+
+.vs-1.selected {
     background-color: #FBEFEF;
 }
 
 .vs-1 > p {
     display: table-cell;
-    vertical-align: middle
+    vertical-align: middle;
 }
 
 .vs-1 > img {
 display: table-cell;
-    vertical-align: middle
+    vertical-align: middle;
 }
 
 
@@ -63,7 +78,7 @@ display: table-cell;
     cursor:pointer;
 }
 
-.vs-2:hover {
+.vs-2.selected {
     background-color: #EFF8FB;
 }
 
