@@ -1,11 +1,17 @@
 $(document).ready(function() {
-//    $("input:radio").click(function() {
-//        var id = $(this).attr("id");
-//        if($(this).is(":checked") && $(this).next().css("background-color") != "#FBEFEF" ) {
-//            $(this).next().css("background-color","#FBEFEF");
-//        
-//            $("input:radio").not(":checked").next().css("background-color","#FFFFFF");
-//        }
-//    });
-
+    $(".submit").click(function() {
+        var values;
+        values = getRadioItems();
+        alert(values);
+    });
 });
+
+function getRadioItems() {
+    var result = 
+        $(".content > .box > input:radio:checked").get();
+    
+    var items = $.map(result, function(element) {
+        return $(element).attr("id"); 
+    });
+    return items.join(",");
+}
