@@ -11,7 +11,7 @@ function getRadioItems() {
         $(".content > .box > input:radio:checked").get();
     
     var items = $.map(result, function(element) {
-        return $(element).attr("id"); 
+        return $(element).val(); 
     });
     return items.join(",");
 }

@@ -109,10 +109,39 @@ display: table-cell;
     vertical-align: middle
 }
 
+.box .vs-3 {
+    width:48%;
+    height: 50px;
+    display: inline-block;
+    float: left;
+    display: table;
+    border-right: 1px solid #E6E6E6;
+    border-left: 1px solid #E6E6E6;
+    border-top: 1px solid #E6E6E6;
+    border-bottom: 1px solid #E6E6E6;
+    cursor:pointer;
+    margin-left:5px;
+}
+
+.vs-3 > p {
+    display: table-cell;
+    vertical-align: middle
+}
+
 
 .prev-btn, .next-btn {
     border: 1px solid grey;
     padding: 5px;
     color:black;
     text-decoration: none;
+}
+
+.me {
+    float: left;
+    margin-left: 220px; 
+}
+
+.other{
+    float: right;
+    margin-right: 210px;
 }
